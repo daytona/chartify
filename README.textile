@@ -17,7 +17,7 @@ h2. Supported chart types
 
 h2. Implementation
 
-p. Various examples of table markup can be found in "index.html":tmp/index.html
+p. Various examples of table markup can be found in "index.html":https://github.com/daytona/tmp/blob/master/index.html
 
 p. Include jQuery and the plugin.
 
