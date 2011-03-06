@@ -51,6 +51,7 @@ bc.. var settings = {
 h3. Bar chart types
 
 To configure bar charts, classes can be added to the table element.
+
 bc.. <!-- Each group is considered a distribution of the population, and the bars of each group sum up to 100%. -->
 <table class="distribution">
 
