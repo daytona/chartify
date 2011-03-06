@@ -67,3 +67,15 @@ bc..
 
 <!-- Treat all amounts as percent. -->
 <table class="percent">
+
+h2. License
+
+jQTableChart is dual licensed under the MIT and GPL licenses.
+
+h2. More information
+
+p. jQTableChart was originally developed for use in various internal projects by "Daytona Communication AB":http://www.daytona.se, a digital agency in Stockholm, Sweden.
+
+h2. Author
+
+p. Rasmus Sellberg
