@@ -17,18 +17,23 @@ h2. Implementation
 Various examples of table markup can be found in index.html
 
 Include jQuery and the plugin.
-@<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="javascripts/jqtablechart.js"></script>@
+<pre>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="javascripts/jqtablechart.js"></script>
+</pre>
 
 Call the plugin function on the desired table elements with the chart type as parameter (bar, pie, venn or gender) and an optional options object.
-@$('.my-bar-charts').jQTableChart('bar');
+<pre>
+$('.my-bar-charts').jQTableChart('bar');
 
 var options = {chartWidth: 530, colors: ["000000", "666666", "cccccc"]};
-$('#my-pie-chart').jQTableChart('pie', options);@
+$('#my-pie-chart').jQTableChart('pie', options);
+</pre>
 
 h3. Options
 These are the defaults.
-@var settings = {
+<pre>
+var settings = {
 	chartWidth: 496, // in pixels
 	chartHeight: 180,  // used when chart is of fixed height
 	textColor: "666666",
@@ -39,11 +44,13 @@ These are the defaults.
 	groupSpacing: 10,
 	imageClass: '', // class(es) to add to the img element
 	margin: 20
-};@
+};
+</pre>
 
 h3. Bar chart types
 To configure bar charts, classes can be added to the table element.
-@<!-- Each group is considered a distribution of the population, and the bars of each group sum up to 100%. -->
+<pre>
+<!-- Each group is considered a distribution of the population, and the bars of each group sum up to 100%. -->
 <table class="distribution">
 
 <!-- The values are stacked onto each other. -->
@@ -57,4 +64,4 @@ To configure bar charts, classes can be added to the table element.
 
 <!-- Treat all amounts as percent. -->
 <table class="percent">
-@
+</pre>
