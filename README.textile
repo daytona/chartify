@@ -1,0 +1,59 @@
+h1. jQTableChart
+
+This is a jQuery plugin that takes data in <table> form and transforms it into Google Charts img elements.
+ 
+h2. Requirements
+* jQuery
+
+h2. Supported chart types
+* Bar charts
+** Stacked
+** Grouped
+* Pie charts
+* Venn/Euler diagrams
+* A simple gender diagram
+
+h2. Implementation
+
+Include jQuery and the plugin.
+@<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="javascripts/jqtablechart.js"></script>@
+
+Call the plugin function on the desired elements with the chart type as parameter (bar, pie, venn or gender) and an optional options object.
+@$('.my-bar-charts').jQTableChart('bar');
+
+var options = {chartWidth: 530, colors: ["000000", "666666", "cccccc"]};
+$('#my-pie-chart').jQTableChart('pie', options);@
+
+h3. Options
+These are the defaults.
+@var settings = {
+	chartWidth: 496, // in pixels
+	chartHeight: 180,  // used when chart is of fixed height
+	textColor: "666666",
+	textSize: "11",
+	colors: 	["ff9daa","ffc000","007ec6","433840","6cc05c","ff710f","ED1F27","95a8ad","0053aa"], // the colors are cycled through
+	barWidth : 20,
+	barSpacing: 2,
+	groupSpacing: 10,
+	imageClass: '', // class(es) to add to the img element
+	margin: 20
+};@
+
+h3. Bar chart types
+To configure bar charts, classes can be added to the table element.
+@<!-- Each group is considered a distribution of the population, and the bars of each group sum up to 100%. -->
+<table class="distribution">
+
+<!-- The values are stacked onto each other. -->
+<table class="stacked">
+
+<!-- The values are stacked onto each other. Each stack is considered a distribution (i.e. sums up to 100%). -->
+<table class="stacked distribution">
+
+<!-- Do not display value labels. -->
+<table class="suppress-context-labels">
+
+<!-- Treat all amounts as percent. -->
+<table class="percent">
+@

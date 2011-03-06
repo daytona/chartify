@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<title>jQTableChart Demo</title>
+	<style type="text/css">
+		.gender-map .men {
+		  position: absolute;
+		  background: url("images/dude.png") 0 0;
+		}
+		.gender-map .women {
+		  position: absolute;
+		  background: url("images/dudette.png") 0 0;
+		}
+		.gender-map {
+		  margin: 0 0 20px 0;
+		}
+	</style>
+</head>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="javascripts/jqtablechart.js"></script>
+<script type="text/javascript">
+$(document).ready(function (){
+  $('.pie-chart').jQTableChart('pie');
+  $('.bar-chart').jQTableChart('bar');
+  $('.venn-diagram').jQTableChart('venn', {colors: ["ff0000", "00ff00", "0000ff"]});
+  $('.gender-chart').jQTableChart('gender');
+});
+</script>
+<body>
+
+    <h2>Pie Chart</h2>
+    <table class="pie-chart">
+      <caption>Where do you live?</caption>
+      <thead>
+        <tr><td></td><th>Rural</th><th>Small town</th><th>City</th></tr>
+      </thead>
+      <tbody>
+        <tr><th>Amount</th><td>15</td><td>45</td><td>212</td></tr>
+      </tbody>  
+    </table>
+
+    <h2>Gender Chart</h2>
+    <table class="gender-chart">
+      <caption>Gender distribution</caption>
+      <thead>
+        <tr><td></td><th abbr="men">Men</th><th abbr="women">Women</th></tr>
+      </thead>
+      <tbody>
+        <tr><th>Amount</th><td>244</td><td>28</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Venn Diagram</h2>
+    <table class="venn-diagram">
+      <caption>A, B and C</caption>
+      <thead>
+        <tr>
+          <th>A</th>
+          <th>B</th>
+          <th>C</th>
+          <td>A and B</td>
+          <td>A and C</td>
+          <td>B and C</td>
+          <td>A and B and C</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>100</td>
+          <td>150</td>
+          <td>70</td>
+          <td>10</td>
+          <td>10</td>
+          <td>20</td>
+          <td>10</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Bar Chart (single group, values in percent)</h2>
+    <table class="bar-chart percent">
+      <caption>When do you create charts?</caption>
+      <thead>
+        <tr>
+          <td></td>
+          <th>00-06</th>
+          <th>06-12</th>
+          <th>12-18</th>
+          <th>18-24</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Amount</th>
+          <td>18</td>
+          <td>41</td>
+          <td>52</td>
+          <td>86</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Bar Chart (multiple groups, distribution)</h2>
+    <table class="bar-chart distribution">
+      <caption>När i veckan använder du iPad?</caption>
+      <thead>
+        <tr>
+          <td></td>
+          <th>Never</th>
+          <th>Rarely</th>
+          <th>Sometimes</th>
+          <th>Often</th>
+          <th>Always</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Mon-Fri</th>
+          <td>1</td>
+          <td>10</td>
+          <td>40</td>
+          <td>103</td>
+          <td>118</td>
+        </tr>
+        <tr>
+          <th>Weekends</th>
+          <td>1</td>
+          <td>7</td>
+          <td>34</td>
+          <td>96</td>
+          <td>134</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>The same chart, but with absolute values</h2>
+    <table class="bar-chart">
+      <caption>När i veckan använder du iPad?</caption>
+      <thead>
+        <tr>
+          <td></td>
+          <th>Never</th>
+          <th>Rarely</th>
+          <th>Sometimes</th>
+          <th>Often</th>
+          <th>Always</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Mon-Fri</th>
+          <td>1</td>
+          <td>10</td>
+          <td>40</td>
+          <td>103</td>
+          <td>118</td>
+        </tr>
+        <tr>
+          <th>Weekends</th>
+          <td>1</td>
+          <td>7</td>
+          <td>34</td>
+          <td>96</td>
+          <td>134</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Stacked Bar Chart (distribution, no context labels)</h2>
+    <table class="bar-chart distribution stacked suppress-context-labels">
+      <caption>How much do you use...?</caption>
+      <thead>
+        <tr>
+          <td></td>
+          <th abbr="E-mail">E-mail</th>
+          <th abbr="Documents">A longer description about writing documents</th>
+          <th abbr="Calendar">Calendar</th>
+          <th abbr="Books">Books</th>
+          <th abbr="News">News</th>
+          <th abbr="Magazines">Magazines</th>
+          <th abbr="Music">Music</th>
+          <th abbr="Video">Watching video</th>
+          <th abbr="Shopping">Shopping</th>
+          <th abbr="Social">Social media</th>
+          <th abbr="Pictures">Pictures</th>
+          <th abbr="Banking">Banking</th>
+          <th abbr="Games">Games</th>
+          <th abbr="Play">Playing with children</th>
+          <th abbr="Betting">Betting</th>
+          <th abbr="Dating">Dating</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th>Always</th><td>73</td><td>6</td><td>42</td><td>26</td><td>114</td><td>49</td><td>15</td><td>39</td><td>10</td><td>106</td><td>27</td><td>12</td><td>35</td><td>24</td><td>1</td><td>1</td></tr>
+        <tr><th>Often</th><td>113</td><td>21</td><td>86</td><td>58</td><td>125</td><td>88</td><td>25</td><td>116</td><td>21</td><td>99</td><td>70</td><td>34</td><td>95</td><td>56</td><td>1</td><td>0</td></tr>
+        <tr><th>Sometimes</th><td>50</td><td>61</td><td>76</td><td>75</td><td>27</td><td>76</td><td>73</td><td>87</td><td>85</td><td>36</td><td>91</td><td>60</td><td>75</td><td>39</td><td>8</td><td>1</td></tr>
+        <tr><th>Rarely</th><td>21</td><td>96</td><td>38</td><td>70</td><td>3</td><td>42</td><td>85</td><td>28</td><td>98</td><td>20</td><td>64</td><td>68</td><td>42</td><td>41</td><td>18</td><td>7</td></tr>
+        <tr><th>Never</th><td>15</td><td>88</td><td>30</td><td>43</td><td>3</td><td>17</td><td>74</td><td>2</td><td>58</td><td>11</td><td>20</td><td>98</td><td>25</td><td>112</td><td>244</td><td>263</td></tr>
+      </tbody>
+    </table>
+</body>
+</html>
