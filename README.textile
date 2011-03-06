@@ -17,11 +17,11 @@ h2. Supported chart types
 
 h2. Implementation
 
-Various examples of table markup can be found in index.html
+p. Various examples of table markup can be found in "index.html":index.html
 
-Include jQuery and the plugin.
+p. Include jQuery and the plugin.
 
-bc. <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+bc.. <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="javascripts/jqtablechart.js"></script>
 
 p. Call the plugin function on the desired table elements with the chart type as parameter (bar, pie, venn or gender) and an optional options object.
@@ -33,7 +33,7 @@ $('#my-pie-chart').jQTableChart('pie', options);
 
 h3. Options
 
-These are the defaults.
+p. These are the defaults.
 
 bc.. var settings = {
 	chartWidth: 496, // in pixels
@@ -50,9 +50,10 @@ bc.. var settings = {
 
 h3. Bar chart types
 
-To configure bar charts, classes can be added to the table element.
+p. To configure bar charts, classes can be added to the table element.
 
-bc.. <!-- Each group is considered a distribution of the population, and the bars of each group sum up to 100%. -->
+bc.. 
+<!-- Each group is considered a distribution of the population, and the bars of each group sum up to 100%. -->
 <table class="distribution">
 
 <!-- The values are stacked onto each other. -->
