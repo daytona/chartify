@@ -4,7 +4,7 @@ This is a jQuery plugin that takes data in @<table>@ form and transforms it into
  
 h2. Requirements
 
-* jQuery
+* "jQuery":http://jquery.com/
 
 h2. Supported chart types
 
@@ -70,7 +70,7 @@ bc..
 
 h2. License
 
-jQTableChart is dual licensed under the MIT and GPL licenses.
+jQTableChart is dual licensed under the "MIT":http://www.opensource.org/licenses/mit-license.php and "GPL":http://www.gnu.org/licenses/gpl-3.0.txt licenses.
 
 h2. More information
 
