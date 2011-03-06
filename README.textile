@@ -3,9 +3,11 @@ h1. jQTableChart
 This is a jQuery plugin that takes data in @<table>@ form and transforms it into Google Charts img elements.
  
 h2. Requirements
+
 * jQuery
 
 h2. Supported chart types
+
 * Bar charts
 ** Stacked
 ** Grouped
@@ -14,20 +16,25 @@ h2. Supported chart types
 * A simple gender diagram
 
 h2. Implementation
+
 Various examples of table markup can be found in index.html
 
 Include jQuery and the plugin.
+
 bc. <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="javascripts/jqtablechart.js"></script>
 
 p. Call the plugin function on the desired table elements with the chart type as parameter (bar, pie, venn or gender) and an optional options object.
+
 bc.. $('.my-bar-charts').jQTableChart('bar');
 
 var options = {chartWidth: 530, colors: ["000000", "666666", "cccccc"]};
 $('#my-pie-chart').jQTableChart('pie', options);
 
 h3. Options
+
 These are the defaults.
+
 bc.. var settings = {
 	chartWidth: 496, // in pixels
 	chartHeight: 180,  // used when chart is of fixed height
@@ -42,6 +49,7 @@ bc.. var settings = {
 };
 
 h3. Bar chart types
+
 To configure bar charts, classes can be added to the table element.
 bc.. <!-- Each group is considered a distribution of the population, and the bars of each group sum up to 100%. -->
 <table class="distribution">
