@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
-	<title>jQTableChart Demo</title>
+	<title>Chartify Demo</title>
 	<style type="text/css">
 		.gender-map .men {
 		  position: absolute;
@@ -17,17 +17,17 @@
 	</style>
 </head>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="javascripts/jqtablechart.js"></script>
+<script type="text/javascript" src="javascripts/chartify.js"></script>
 <script type="text/javascript">
 $(document).ready(function (){
-  $('.pie-chart').jQTableChart('pie');
-  $('.bar-chart').jQTableChart('bar');
-  $('.venn-diagram').jQTableChart('venn', {colors: ["ff0000", "00ff00", "0000ff"]});
-  $('.gender-chart').jQTableChart('gender');
+  $('.pie-chart').chartify('pie');
+  $('.bar-chart').chartify('bar');
+  $('.venn-diagram').chartify('venn', {colors: ["ff0000", "00ff00", "0000ff"]});
+  $('.gender-chart').chartify('gender');
 });
 </script>
 <body>
-
+	<h1>Chartify demo</h1>
     <h2>Pie Chart</h2>
     <table class="pie-chart">
       <caption>Where do you live?</caption>

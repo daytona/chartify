@@ -1,4 +1,4 @@
-h1. jQTableChart
+h1. Chartify
 
 This is a jQuery plugin that takes data in @<table>@ form and transforms it into Google Charts img elements.
  
@@ -6,7 +6,7 @@ h2. Requirements
 
 * "jQuery":http://jquery.com/
 
-h2. Supported chart types
+h2. Currently supported chart types
 
 * Bar charts
 ** Stacked
@@ -17,23 +17,23 @@ h2. Supported chart types
 
 h2. Implementation
 
-p. Various examples of table markup can be found in "index.html":https://github.com/daytona/tmp/blob/master/index.html
+p. Various examples of table markup can be found in "index.html":https://github.com/daytona/chartify/blob/master/index.html
 
 p. Include jQuery and the plugin.
 
 bc.. <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="javascripts/jqtablechart.js"></script>
+<script type="text/javascript" src="javascripts/chartify.js"></script>
 
 p. Call the plugin function on the desired table elements with the chart type as parameter (bar, pie, venn or gender) and an optional options object.
 
-bc.. $('.my-bar-charts').jQTableChart('bar');
+bc.. $('.my-bar-charts').chartify('bar');
 
 var options = {chartWidth: 530, colors: ["000000", "666666", "cccccc"]};
-$('#my-pie-chart').jQTableChart('pie', options);
+$('#my-pie-chart').chartify('pie', options);
 
 h3. Options
 
-p. These are the defaults.
+p. When called without an options parameter, the following defaults are used.
 
 bc.. var settings = {
 	chartWidth: 496, // in pixels
@@ -47,6 +47,8 @@ bc.. var settings = {
 	imageClass: '', // class(es) to add to the img element
 	margin: 20
 };
+
+p. To override any of the default options use the options parameter.
 
 h3. Bar chart types
 
@@ -70,12 +72,12 @@ bc..
 
 h2. License
 
-jQTableChart is dual licensed under the "MIT":http://www.opensource.org/licenses/mit-license.php and "GPL":http://www.gnu.org/licenses/gpl-3.0.txt licenses.
+Chartify is dual licensed under the "MIT":http://www.opensource.org/licenses/mit-license.php and "GPL":http://www.gnu.org/licenses/gpl-3.0.txt licenses.
 
 h2. More information
 
-p. jQTableChart was originally developed for use in various internal projects by "Daytona Communication AB":http://www.daytona.se, a digital agency in Stockholm, Sweden.
+p. Chartify was originally developed as part of <em>Daytona Labs</em>, the research program of the digital agency "Daytona":http://www.daytona.se. Daytona is based in Stockholm, Sweden.
 
 h2. Author
 
-p. Rasmus Sellberg
+p. Rasmus Sellberg, rasmus@daytona.se
