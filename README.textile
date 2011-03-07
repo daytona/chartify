@@ -2,7 +2,7 @@ h1. Chartify
 
 This is a jQuery plugin that takes data in @<table>@ form and transforms it into Google Charts img elements.
 
-Go to http://github.com/daytona/chartify/downloads for downloads.
+Chartify can be downloaded "here":http://github.com/daytona/chartify/downloads.
  
 h2. Requirements
 
