@@ -1,6 +1,6 @@
 h1. Chartify
 
-This is a jQuery plugin that takes data in @<table>@ form and transforms it into Google Charts img elements.
+This is a jQuery plugin that takes data in @<table>@ form and transforms it into "Google Charts":http://code.google.com/apis/chart/ @<img>@ elements.
 
 Chartify can be downloaded "here":http://github.com/daytona/chartify/downloads.
  
@@ -10,16 +10,16 @@ h2. Requirements
 
 h2. Currently supported chart types
 
-* Bar charts
-** Stacked
+* "Bar charts":http://code.google.com/apis/chart/docs/gallery/bar_charts.html
 ** Grouped
-* Pie charts
-* Venn/Euler diagrams
+** Stacked
+* "Pie charts":http://code.google.com/apis/chart/docs/gallery/pie_charts.html
+* "Venn charts":http://code.google.com/apis/chart/docs/gallery/venn_charts.html
 * A simple gender diagram
 
 h2. Implementation
 
-p. Various examples of table markup can be found in "index.html":https://github.com/daytona/chartify/blob/master/index.html
+p. "Download Chartify":http://github.com/daytona/chartify/downloads.
 
 p. Include jQuery and the plugin.
 
@@ -33,6 +33,8 @@ bc.. $('.my-bar-charts').chartify('bar');
 var options = {chartWidth: 530, colors: ["000000", "666666", "cccccc"]};
 $('#my-pie-chart').chartify('pie', options);
 
+p. More examples of table markup can be found in "index.html":https://github.com/daytona/chartify/blob/master/index.html
+
 h3. Options
 
 p. When called without an options parameter, the following defaults are used.
@@ -42,7 +44,7 @@ bc.. var settings = {
 	chartHeight: 180,  // used when chart is of fixed height
 	textColor: "666666",
 	textSize: "11",
-	colors: 	["ff9daa","ffc000","007ec6","433840","6cc05c","ff710f","ED1F27","95a8ad","0053aa"], // the colors are cycled through
+	colors: ["ff9daa","ffc000","007ec6","433840","6cc05c","ff710f","ed1f27","95a8ad","0053aa"], // the colors are cycled through
 	barWidth : 20,
 	barSpacing: 2,
 	groupSpacing: 10,
@@ -50,17 +52,17 @@ bc.. var settings = {
 	margin: 20
 };
 
-p. To override any of the default options use the options parameter.
+p. To override any of these defaults, use the options parameter.
 
 h3. Bar chart types
 
 p. To configure bar charts, classes can be added to the table element.
 
 bc.. 
-<!-- Each group is considered a distribution of the population, and the bars of each group sum up to 100%. -->
+<!-- Each series is considered a distribution of the population, and the bars of each group sum up to 100%. -->
 <table class="distribution">
 
-<!-- The values are stacked onto each other. -->
+<!-- Each series is stacked onto each other. -->
 <table class="stacked">
 
 <!-- The values are stacked onto each other. Each stack is considered a distribution (i.e. sums up to 100%). -->
@@ -80,6 +82,9 @@ h2. More information
 
 p. Chartify was originally developed as part of <em>Daytona Labs</em>, the research program of the digital agency "Daytona":http://www.daytona.se. Daytona is based in Stockholm, Sweden.
 
+h3. Project homepage
+"Chartify":http://www.daytona.se/chartify
+
 h2. Author
 
-p. Rasmus Sellberg, rasmus@daytona.se
+p. Rasmus Sellberg, "@rsellberg":http://twitter.com/rsellberg
