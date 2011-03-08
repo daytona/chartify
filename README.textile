@@ -74,6 +74,14 @@ bc..
 <!-- Treat all amounts as percent. -->
 <table class="percent">
 
+h2. Problems and suggestions
+
+p. If you find an error or have a suggestion for future development, please report an "issue":https://github.com/daytona/chartify/issues.
+
+h2. Contribution
+
+p. If you want to build on this (e.g. add support for more chart types), please send a Pull Request.
+
 h2. License
 
 Chartify is dual licensed under the "MIT":http://www.opensource.org/licenses/mit-license.php and "GPL":http://www.gnu.org/licenses/gpl-3.0.txt licenses.
