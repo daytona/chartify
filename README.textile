@@ -91,7 +91,8 @@ h2. More information
 p. Chartify was originally developed as part of <em>Daytona Labs</em>, the research program of the digital agency "Daytona":http://www.daytona.se. Daytona is based in Stockholm, Sweden.
 
 h3. Project homepage
-"Chartify":http://www.daytona.se/chartify
+
+p. "Chartify":http://www.daytona.se/chartify
 
 h2. Author
 
