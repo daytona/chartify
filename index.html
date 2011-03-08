@@ -15,17 +15,17 @@
 		  margin: 0 0 20px 0;
 		}
 	</style>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+	<script type="text/javascript" src="javascripts/chartify.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function (){
+	  $('.pie-chart').chartify('pie');
+	  $('.bar-chart').chartify('bar');
+	  $('.venn-diagram').chartify('venn', {colors: ["ff0000", "00ff00", "0000ff"]});
+	  $('.gender-chart').chartify('gender');
+	});
+	</script>
 </head>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="javascripts/chartify.js"></script>
-<script type="text/javascript">
-$(document).ready(function (){
-  $('.pie-chart').chartify('pie');
-  $('.bar-chart').chartify('bar');
-  $('.venn-diagram').chartify('venn', {colors: ["ff0000", "00ff00", "0000ff"]});
-  $('.gender-chart').chartify('gender');
-});
-</script>
 <body>
 	<h1>Chartify demo</h1>
     <h2>Pie Chart</h2>
