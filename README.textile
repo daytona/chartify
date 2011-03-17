@@ -1,4 +1,4 @@
-!https://github.com/daytona/chartify/blob/master/logo.png!
+!https://github.com/daytona/chartify/raw/master/logo.png!
 
 h1. Chartify
 
