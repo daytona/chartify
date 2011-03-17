@@ -1,3 +1,5 @@
+!https://github.com/daytona/chartify/blob/master/logo.png!
+
 h1. Chartify
 
 This is a jQuery plugin that takes data in @<table>@ form and transforms it into "Google Charts":http://code.google.com/apis/chart/ @<img>@ elements.
