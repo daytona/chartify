@@ -76,6 +76,10 @@ bc..
 <!-- Treat all amounts as percent. -->
 <table class="percent">
 
+h2. Future development
+
+p. There are obviously several areas where improvements could be made. First of all: more chart types should really be supported. Another thing worth mentioning is how settings are handled -- it could be so much more elegant. I'm working on it...
+
 h2. Problems and suggestions
 
 p. If you find an error or have a suggestion for future development, please report an "issue":https://github.com/daytona/chartify/issues.
