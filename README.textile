@@ -84,6 +84,11 @@ h2. Problems and suggestions
 
 p. If you find an error or have a suggestion for future development, please report an "issue":https://github.com/daytona/chartify/issues.
 
+h3. Known issues
+
+* The pie chart method doesn't fully support chart type "pc" (concentric pie chart)
+* 
+
 h2. Contribution
 
 p. If you want to build on this (e.g. add support for more chart types), please send a Pull Request.

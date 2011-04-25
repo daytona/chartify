@@ -18,10 +18,11 @@
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 	<script type="text/javascript" src="javascripts/chartify.js"></script>
 	<script type="text/javascript">
-	$(document).ready(function (){
-	  $('.pie-chart').chartify('pie');
-	  $('.bar-chart').chartify('bar');
-	  $('.venn-diagram').chartify('venn', {colors: ["ff0000", "00ff00", "0000ff"]});
+	$(document).ready(function () {
+	  $('.pie-chart').chartify('pie', {chartType: 'p3'});
+	  $('.bar-chart').chartify('bar', {legendPosition: 'b'});
+	  $('.bar-chart-1').chartify('bar', {marginLeft: 128, legendPosition: 'r', showLabels: false});
+	  $('.venn-diagram').chartify('venn', {colors: ["ff000080", "00ff0080", "0000ff80"]});
 	  $('.gender-chart').chartify('gender');
 	});
 	</script>
@@ -78,7 +79,7 @@
     </table>
 
     <h2>Bar Chart (single group, values in percent)</h2>
-    <table class="bar-chart percent">
+    <table class="bar-chart-1 percent">
       <caption>When do you create charts?</caption>
       <thead>
         <tr>

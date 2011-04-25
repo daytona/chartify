@@ -76,94 +76,113 @@
 	};
 	jQuery.extend(String.prototype, {toString : function () {return this;}});
 
+	// default global settings
 	var settings = {
-		chartWidth: 496, // in pixels
-		chartHeight: 180,  // used when fixed height
-		textColor: "666666",
-		textSize: "11",
-		colors: 	["ff9daa","ffc000","007ec6","433840","6cc05c","ff710f","ED1F27","95a8ad","0053aa"],
-		barWidth : 20,
-		barSpacing: 2,
-		groupSpacing: 10,
-		imageClass: '',
-		margin: 20
+		chartWidth:  	496, // in pixels
+		chartHeight: 	180,  // used when fixed height
+		marginTop: 		0,
+		marginRight: 	0,
+		marginBottom: 	0,
+		marginLeft: 	0,
+		legendWidth: 	0,
+		legendHeight: 	0,
+		pieChartRotation: 0,
+		unit: 			'%',
+		textSize:		11,
+		textColor:   	"666666",
+		colors: 		["ff9daa","ffc000","007ec6","433840","6cc05c","ff710f","ED1F27","95a8ad","0053aa"],
+		xAxisMax: 		'auto',
+		xAxisStep: 		'auto',
+		axisTickSize: 	5,
+		showLabels: 	true,
+		showLegend: 	true,
+		legendPosition: '',
+		barWidth: 		20,
+		barSpacing: 	2,
+		groupSpacing: 	10,
+		imageClass: 	''
 	};
 	var methods = {
-		pie : function (options) {
-			var mySettings = jQuery.extend({}, settings);
+		// getter / setter of global settings
+		settings : function (options) {
 			if (options) {
-				$.extend(mySettings, options);
+				$.extend(settings, options);
+				return this.each(function(){});
+			} else {
+				return settings;
 			}
-			jQuery.extend(mySettings.colors, ArrayExtensions);
+		},
+		pie : function (options) {
+			var mySettings = getSettings(options);
 			return this.each(function (){
 				var table = $(this);
 				var data = table.chartifyTableData({isDistribution: true});
 				var caption = data.getCaption();
+				
 				var config = {
-					chxs : '0,' + mySettings.textColor + ',' + mySettings.textSize,
-					chxt : 'x',
-					chs : ''+mySettings.chartWidth+'x' + mySettings.chartHeight,   // size
-					cht : 'p',   // chart type
-					chdlp : 'r',  // legend style
-					chma : '0,0|0,0'  // margins
+					cht : mySettings.chartType ? mySettings.chartType : 'p',		// chart type
+					chs : '' + mySettings.chartWidth+'x' + mySettings.chartHeight,	// chart size
+					chp : mySettings.pieChartRotation,								// chart rotation
+					chdlp : mySettings.legendPosition,								// legend position
+					chdls : mySettings.textColor + ',' + mySettings.textSize,		// legend style
+					chts : mySettings.textColor + ',' + mySettings.textSize,		// legend style
+					chma : '' + mySettings.marginLeft + ',' + mySettings.marginRight + ',' + mySettings.marginTop + ',' + mySettings.marginBottom + '|' + mySettings.legendWidth + ',' + mySettings.legendHeight												// margins
 				};
 				config.chd = 't:' + data.toString(',', '|');  // data
-				config.chdl = data.getValueRowHeaders().round(1).appendEach('%').join('|'); //legend
-				config.chl = data.getColumnHeaders().join('|');  // labels
-				config.chds = '0,' + data.getMax();  // scale
-				config.chco = mySettings.colors.first(data.numColumns);  // colors
+				if (mySettings.showTitle) config.chtt = caption;
+				if (mySettings.showLegend) config.chdl = data.getValueRowHeaders().round(1).appendEach(mySettings.unit).join('|'); //legend
+				if (mySettings.showLabels) config.chl = data.getColumnHeaders().join('|');  // labels
+				if (mySettings.colors) config.chco = mySettings.colors.first(data.numColumns);  // colors
 				params = serialize(config);
 				table.after('<img class="'+mySettings.imageClass+'" src="http://chart.apis.google.com/chart?'+params+'" width="'+mySettings.chartWidth+'" height="'+mySettings.chartHeight+'" alt="'+caption+'" />');
 				table.attr("style", "position: absolute; left: -9999px;");
 			});
 		},
 		bar : function (options) {
-			var mySettings = jQuery.extend({}, settings);
-			if (options) {
-				$.extend(mySettings, options);
-			}
-			jQuery.extend(mySettings.colors, ArrayExtensions);
+			var mySettings = getSettings(options);
 			return this.each(function (){
 				var table = $(this);
 				var tableOptions = {
-					suppressContextLabels : table.hasClass("suppress-context-labels") ? true : false,
 					isStacked : table.hasClass("stacked") ? true : false,
-					isDistribution : table.hasClass("distribution") ? true : false,
-					isPercent : table.hasClass("percent") ? true : false
+					isDistribution : table.hasClass("distribution") ? true : false
 				};
 				var data = table.chartifyTableData(tableOptions);
 				var caption = data.getCaption();
 				var isGrouped = !tableOptions.isStacked && data.numRows > 1;
 				var numGroups = isGrouped ? data.numRows : 1;
 				var groupHeight = mySettings.barWidth * numGroups + mySettings.barSpacing * (numGroups - 1);
-				var numMargins = (data.numRows > 1) ? 2 : 1; 
+				var numMargins = mySettings.showLegend && mySettings.legendPosition.match(/^(b|t)/) ? 2 : 1; // 1 margin if no legend at top/bottom, 2 otherwise.
 				var height;
 				if (isGrouped) {
-					height = groupHeight * data.numColumns + mySettings.groupSpacing * (data.numColumns - 1) + numMargins * mySettings.margin + 11;
+					height = groupHeight * data.numColumns + mySettings.groupSpacing * (data.numColumns - 1) + numMargins * 20 + mySettings.textSize;
 				} else {
-					height = data.numColumns * (groupHeight + mySettings.barSpacing) - mySettings.barSpacing + numMargins * mySettings.margin + 11;
+					height = data.numColumns * (groupHeight + mySettings.barSpacing) - mySettings.barSpacing + numMargins * 20 + mySettings.textSize;
 				}
 				var config = {
 					chxs : '0,' + mySettings.textColor + ',' + mySettings.textSize + ',0,lt,' + mySettings.textColor + '|0,' + mySettings.textColor + ',' + mySettings.textSize + ',0,lt,'+ mySettings.textColor,
-					chxt : 'x,y',
-					cht : isGrouped ? 'bhg' : 'bhs', // chart type
-					chs : ''+mySettings.chartWidth+'x' + height,  // size
-					chma : '128|0',  // margins
-					chxtc : '0,5|1,5',  // ticks style
-					chdlp : 'b',
+					chxt : 'x,y',													// axis
+					cht : isGrouped ? 'bhg' : 'bhs',								// chart type
+					chs : ''+mySettings.chartWidth+'x' + height,					// size
+					chxtc : '0,'+mySettings.axisTickSize+'|1,'+mySettings.axisTickSize, // ticks style
+					chdlp : mySettings.legendPosition,								// legend position
+					chdls : mySettings.textColor + ',' + mySettings.textSize,		// legend style
 					chbh : mySettings.barWidth.toString() + ','+mySettings.barSpacing+',' + mySettings.groupSpacing, // bar width, spacing
-					chco : mySettings.colors.first(data.numRows).join(',')
+					chma : '' + mySettings.marginLeft + ',' + mySettings.marginRight + ',' + mySettings.marginTop + ',' + mySettings.marginBottom + '|' + mySettings.legendWidth + ',' + mySettings.legendHeight												// margins
 				};
-				if (!tableOptions.suppressContextLabels) {
+				config.chd = 't:' + data.toString(',', '|');
+
+				if (mySettings.showTitle) config.chtt = caption;
+
+				if (mySettings.colors) config.chco = mySettings.colors.first(data.numRows).join(',');
+				if (mySettings.showLabels) {
 					var chm = '';
 					for(var i = 0; i < data.numRows; i++) {
 						if (i > 0) chm += '|';
-						chm += 'N*0*'+((tableOptions.isDistribution || tableOptions.isPercent) ? '%' : '')+','+mySettings.textColor+','+i+',-1,' + mySettings.textSize + ",0,r:-3:0";   // bar labels
+						chm += 'N*0*'+mySettings.unit+','+mySettings.textColor+','+i+',-1,' + mySettings.textSize + ",0,r:-3:0";   // bar labels
 					}
 					config.chm = chm;
 				}
 
-				config.chd = 't:' + data.toString(',', '|');
 
 				var maxLabel = Math.round(data.getMax(tableOptions));
 				var axisMargin = 1;
@@ -180,15 +199,15 @@
 				}
 
 				var arr = [];
-				jQuery.extend(arr, ArrayExtensions);
+				$.extend(arr, ArrayExtensions);
 				var xAxisLabels = arr.range(0, maxLabel + axisMargin * axisStep, axisStep);
 				var max = xAxisLabels[xAxisLabels.length - 1];
-				if (tableOptions.isDistribution || tableOptions.isPercent) xAxisLabels = xAxisLabels.appendEach('%');
-				config.chxr = '0,0,'+max+'|1,0,10';
+				if (mySettings.unit) xAxisLabels = xAxisLabels.appendEach(mySettings.unit);
 				config.chxl = '0:|'+xAxisLabels.join('|')+'|1:|'+data.getColumnHeaders().reverse().join('|');  // labels
+				config.chxr = '0,0,'+max+'|1,0,0';
 				config.chds = '0,' + max;  // scale
 
-				if (isGrouped || tableOptions.isStacked) {
+				if (mySettings.showLegend) {
 					config.chdl = data.getRowHeaders().join('|'); // legend
 				}
 
@@ -198,11 +217,7 @@
 			});
 		},
 		venn : function (options) {
-			var mySettings = jQuery.extend({}, settings);
-			if (options) {
-				$.extend(mySettings, options);
-			}
-			jQuery.extend(mySettings.colors, ArrayExtensions);
+			var mySettings = getSettings(options);
 			return this.each(function (){
 				var table = $(this);
 				var data = table.chartifyTableData();
@@ -211,12 +226,14 @@
 				var config = {
 					chs : '' + mySettings.chartWidth + 'x' + mySettings.chartHeight,  // size
 					cht : 'v',
-					chdlp : 'r',
+					chdlp : mySettings.legendPosition,								// legend position
+					chdls : mySettings.textColor + ',' + mySettings.textSize,  // legend style
 					chds : '0,'+max,
-					chco : mySettings.colors.first(data.numColumns).join(',')  // colors
+					chma : '' + mySettings.marginLeft + ',' + mySettings.marginRight + ',' + mySettings.marginTop + ',' + mySettings.marginBottom + '|' + mySettings.legendWidth + ',' + mySettings.legendHeight												// margins
 				};
 				config.chd = 't:' + data.toString(',', '|');  // data
-				config.chdl = data.getColumnHeaders().join('|');   // legend
+				if (mySettings.colors) config.chco = mySettings.colors.first(data.numColumns).join(',');
+				if (mySettings.showLegend) config.chdl = data.getColumnHeaders().join('|');   // legend
 
 				var params = serialize(config);
 				table.after('<img class="'+mySettings.imageClass+'" src="http://chart.apis.google.com/chart?'+params+'" width="'+mySettings.chartWidth+'" height="'+mySettings.chartHeight+'" alt="'+caption+'" />');    
@@ -225,17 +242,13 @@
 		},
 		// TODO: change this to handle any number of categories
 		gender : function (options) {
-			var mySettings = jQuery.extend({}, settings);
-			if (options) {
-				$.extend(mySettings, options);
-			}
+			var mySettings = getSettings(options);
 			$.extend(mySettings, {
 				chartWidth : 480,
 				chartHeight: 200,
 				numCols : 20,
 				numRows : 5
 			});
-			jQuery.extend(mySettings.colors, ArrayExtensions);
 			return this.each(function (){
 				var table = $(this);
 				var data = table.chartifyTableData({isDistribution: true});
@@ -271,7 +284,14 @@
 		str.push(p + "=" + encodeURIComponent(obj[p]));
 		return str.join("&");
 	}
-
+	function getSettings(options) {
+		var s = $.extend({}, settings);
+		if (options) {
+			$.extend(s, options);
+		}
+		$.extend(s.colors, ArrayExtensions);
+		return s;
+	}
 	function tableData (table, options) {
 		var settings = {
 			isStacked : false,
