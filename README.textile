@@ -42,31 +42,31 @@ h3. Options and defaults
 p. When called without an options parameter, the following defaults are used.
 
 bc.. var settings = {
-	chartWidth:  	496, // in pixels
-	chartHeight: 	180, 
-	marginTop: 		0,
-	marginRight: 	0,
-	marginBottom: 	0,
-	marginLeft: 	0,
-	legendWidth: 	0,
-	legendHeight: 	0,
+	chartWidth:     496, // in pixels
+	chartHeight:    180, 
+	marginTop:      0,
+	marginRight:    0,
+	marginBottom:   0,
+	marginLeft:     0,
+	legendWidth:    0,
+	legendHeight:   0,
 	pieChartRotation: 0,  // in radians
-	unit: 			'',   // appended to labels and values
-	textSize:		11,
-	textColor:   	"666666",
-	colors: 		["ff9daa","ffc000","007ec6","433840","6cc05c","ff710f","ED1F27","95a8ad","0053aa"],
+	unit:           '',   // appended to labels and values
+	textSize:       11,
+	textColor:      "666666",
+	colors:         ["ff9daa","ffc000","007ec6","433840","6cc05c","ff710f","ED1F27","95a8ad","0053aa"],
 	xAxisBoundaries:'auto',
-	xAxisStep: 		'auto',
-	axisTickSize: 	5,
-	showLabels: 	true,
-	showLegend: 	true,
+	xAxisStep:      'auto',
+	axisTickSize:   5,
+	showLabels:     true,
+	showLegend:     true,
 	legendPosition: '',
-	isStacked: 		false,
+	isStacked:      false,
 	isDistribution: false,
-	barWidth: 		20,
-	barSpacing: 	2,
-	groupSpacing: 	10,
-	imageClass: 	''
+	barWidth:       20,
+	barSpacing:     2,
+	groupSpacing:   10,
+	imageClass:     ''
 };
 
 p. To override any of these defaults for a single call to @chartify@, use the options parameter.
@@ -90,6 +90,7 @@ p. If you find an error or have a suggestion for future development, please repo
 h3. Known issues
 
 * The pie chart method doesn't fully support chart type "pc" (concentric pie chart)
+* No support for vertical bar charts
 * The axis labels support is not fully implemented
 * The gender chart should be developed to support any number of categories
 * Line charts and area charts are missing...
