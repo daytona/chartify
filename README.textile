@@ -37,7 +37,7 @@ $('#my-pie-chart').chartify('pie', options);
 
 p. More examples of table markup can be found in "index.html":https://github.com/daytona/chartify/blob/master/index.html
 
-h3. Options
+h3. Options and defaults
 
 p. When called without an options parameter, the following defaults are used.
 
@@ -69,7 +69,7 @@ bc.. var settings = {
 	imageClass: 	''
 };
 
-p. To override any of these defaults, use the options parameter.
+p. To override any of these defaults for a single call to @chartify@, use the options parameter.
 
 p. To override the default settings globally, use the @settings@ method:
 
