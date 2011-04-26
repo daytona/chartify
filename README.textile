@@ -71,7 +71,7 @@ bc.. var settings = {
 
 p. To override any of these defaults for a single call to @chartify@, use the options parameter.
 
-p. To override the default settings globally, i.e. for all subsequent calls to @chartify@, use the @settings@ method:
+p. To override any of the default settings globally, i.e. for all subsequent calls to @chartify@, use the @settings@ method:
 
 bc.. $().chartify('settings', {showLegend: false});
 
