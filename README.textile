@@ -43,15 +43,15 @@ p. When called without an options parameter, the following defaults are used.
 
 bc.. var settings = {
 	chartWidth:  	496, // in pixels
-	chartHeight: 	180,  // used when fixed height
+	chartHeight: 	180, 
 	marginTop: 		0,
 	marginRight: 	0,
 	marginBottom: 	0,
 	marginLeft: 	0,
 	legendWidth: 	0,
 	legendHeight: 	0,
-	pieChartRotation: 0,
-	unit: 			'',
+	pieChartRotation: 0,  // in radians
+	unit: 			'',   // appended to labels and values
 	textSize:		11,
 	textColor:   	"666666",
 	colors: 		["ff9daa","ffc000","007ec6","433840","6cc05c","ff710f","ED1F27","95a8ad","0053aa"],
@@ -90,7 +90,9 @@ p. If you find an error or have a suggestion for future development, please repo
 h3. Known issues
 
 * The pie chart method doesn't fully support chart type "pc" (concentric pie chart)
-* 
+* The axis labels support is not fully implemented
+* The gender chart should be developed to support any number of categories
+* Line charts and area charts are missing...
 
 h2. Contribution
 
