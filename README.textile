@@ -75,7 +75,7 @@ p. To override any of the default settings globally, i.e. for all subsequent cal
 
 bc.. $().chartify('settings', {showLegend: false});
 
-p. When called without parameters, the @settings@ method returns the current default settings hash.
+p. When called without the parameter, the @settings@ method returns the current default settings hash.
 
 h2. Future development
 
@@ -90,10 +90,10 @@ p. If you find an error or have a suggestion for future development, please repo
 h3. Known issues
 
 * The pie chart method doesn't fully support chart type "pc" (concentric pie chart)
+* No support for line charts and area charts
 * No support for vertical bar charts
 * The axis labels support is not fully implemented
 * The gender chart should be developed to support any number of categories
-* Line charts and area charts are missing...
 
 h2. Contribution
 
