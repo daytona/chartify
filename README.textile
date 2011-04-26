@@ -42,43 +42,48 @@ h3. Options
 p. When called without an options parameter, the following defaults are used.
 
 bc.. var settings = {
-	chartWidth: 496, // in pixels
-	chartHeight: 180,  // used when chart is of fixed height
-	textColor: "666666",
-	textSize: "11",
-	colors: ["ff9daa","ffc000","007ec6","433840","6cc05c","ff710f","ed1f27","95a8ad","0053aa"], // the colors are cycled through
-	barWidth : 20,
-	barSpacing: 2,
-	groupSpacing: 10,
-	imageClass: '', // class(es) to add to the img element
-	margin: 20
+	chartWidth:  	496, // in pixels
+	chartHeight: 	180,  // used when fixed height
+	marginTop: 		0,
+	marginRight: 	0,
+	marginBottom: 	0,
+	marginLeft: 	0,
+	legendWidth: 	0,
+	legendHeight: 	0,
+	pieChartRotation: 0,
+	unit: 			'',
+	textSize:		11,
+	textColor:   	"666666",
+	colors: 		["ff9daa","ffc000","007ec6","433840","6cc05c","ff710f","ED1F27","95a8ad","0053aa"],
+	xAxisBoundaries:'auto',
+	xAxisStep: 		'auto',
+	axisTickSize: 	5,
+	showLabels: 	true,
+	showLegend: 	true,
+	legendPosition: '',
+	isStacked: 		false,
+	isDistribution: false,
+	barWidth: 		20,
+	barSpacing: 	2,
+	groupSpacing: 	10,
+	imageClass: 	''
 };
 
 p. To override any of these defaults, use the options parameter.
 
+p. To override the default settings globally, use the @settings@ method:
+
+bc.. $().settings({showLegend: false});
+
+p. When called without parameters, the @settings@ method returns the current default settings hash.
+
 h3. Bar chart types
-
-p. To configure bar charts, classes can be added to the table element.
-
-bc.. 
-<!-- Each series is considered a distribution of the population, and the bars of each group sum up to 100%. -->
-<table class="distribution">
-
-<!-- Each series is stacked onto each other. -->
-<table class="stacked">
-
-<!-- The values are stacked onto each other. Each stack is considered a distribution (i.e. sums up to 100%). -->
-<table class="stacked distribution">
-
-<!-- Do not display value labels. -->
-<table class="suppress-context-labels">
-
-<!-- Treat all amounts as percent. -->
-<table class="percent">
 
 h2. Future development
 
-p. There are obviously several areas where improvements could be made. First of all: more chart types should really be supported. Another thing worth mentioning is how settings are handled -- it could be so much more elegant. I'm working on it...
+p. There are obviously several areas where improvements could be made. First of all: more chart types should really be supported. 
+
+I'm working on it...
 
 h2. Problems and suggestions
 

@@ -278,7 +278,7 @@
 		$.extend(arr, ArrayExtensions);
 		return arr.range(minValue, maxValue, step);
 	}
-	// TODO: write this function
+	// TODO: actually write this function
 	function getAxisStep (minValue, maxValue) {
 		var range = maxValue - minValue;
 		if (range <= 60) {
