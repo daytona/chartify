@@ -87,16 +87,18 @@
 		legendWidth: 	0,
 		legendHeight: 	0,
 		pieChartRotation: 0,
-		unit: 			'%',
+		unit: 			'',
 		textSize:		11,
 		textColor:   	"666666",
 		colors: 		["ff9daa","ffc000","007ec6","433840","6cc05c","ff710f","ED1F27","95a8ad","0053aa"],
-		xAxisMax: 		'auto',
+		xAxisBoundaries:'auto',
 		xAxisStep: 		'auto',
 		axisTickSize: 	5,
 		showLabels: 	true,
 		showLegend: 	true,
 		legendPosition: '',
+		isStacked: 		false,
+		isDistribution: false,
 		barWidth: 		20,
 		barSpacing: 	2,
 		groupSpacing: 	10,
@@ -116,7 +118,7 @@
 			var mySettings = getSettings(options);
 			return this.each(function (){
 				var table = $(this);
-				var data = table.chartifyTableData({isDistribution: true});
+				var data = table.chartifyTableData({isDistribution: mySettings.isDistribution});
 				var caption = data.getCaption();
 				
 				var config = {
@@ -142,13 +144,10 @@
 			var mySettings = getSettings(options);
 			return this.each(function (){
 				var table = $(this);
-				var tableOptions = {
-					isStacked : table.hasClass("stacked") ? true : false,
-					isDistribution : table.hasClass("distribution") ? true : false
-				};
-				var data = table.chartifyTableData(tableOptions);
+				var data = table.chartifyTableData(mySettings);
 				var caption = data.getCaption();
-				var isGrouped = !tableOptions.isStacked && data.numRows > 1;
+				
+				var isGrouped = !mySettings.isStacked && data.numRows > 1;
 				var numGroups = isGrouped ? data.numRows : 1;
 				var groupHeight = mySettings.barWidth * numGroups + mySettings.barSpacing * (numGroups - 1);
 				var numMargins = mySettings.showLegend && mySettings.legendPosition.match(/^(b|t)/) ? 2 : 1; // 1 margin if no legend at top/bottom, 2 otherwise.
@@ -182,34 +181,31 @@
 					}
 					config.chm = chm;
 				}
+				if (mySettings.showLegend) config.chdl = data.getRowHeaders().join('|'); // legend
 
+				var maxXValue, minXValue, xAxisStep;
 
-				var maxLabel = Math.round(data.getMax(tableOptions));
-				var axisMargin = 1;
-				if (tableOptions.isStacked && tableOptions.isDistribution) {
-					axisMargin = 0;
-				}
-				var axisStep;
-				if (maxLabel <= 60) {
-					axisStep = 5;
-				} else if (maxLabel <= 120) {
-					axisStep = 10;
+				if (mySettings.xAxisBoundaries == "auto") {
+					minXValue = 0;
+					maxXValue = Math.round(data.getMax(mySettings));
+					var xAxisPadding = mySettings.isStacked && mySettings.isDistribution ? 0 : 1;
+					xAxisStep = mySettings.xAxisStep == "auto" ? getAxisStep(minXValue, maxXValue) : mySettings.xAxisStep;
+					maxXValue += xAxisPadding * xAxisStep;
 				} else {
-					axisStep = 25;
+					minXValue = mySettings.xAxisBoundaries[0];
+					maxXValue = mySettings.xAxisBoundaries[1];
+					xAxisStep = mySettings.xAxisStep == "auto" ? getAxisStep(minXValue, maxXValue) : mySettings.xAxisStep;
 				}
+				
+				var xAxisLabels = getAxisLabels(minXValue, maxXValue, xAxisStep);
+				var yAxisLabels = data.getColumnHeaders().reverse();
 
-				var arr = [];
-				$.extend(arr, ArrayExtensions);
-				var xAxisLabels = arr.range(0, maxLabel + axisMargin * axisStep, axisStep);
-				var max = xAxisLabels[xAxisLabels.length - 1];
+				var xMax = xAxisLabels[xAxisLabels.length - 1];
 				if (mySettings.unit) xAxisLabels = xAxisLabels.appendEach(mySettings.unit);
-				config.chxl = '0:|'+xAxisLabels.join('|')+'|1:|'+data.getColumnHeaders().reverse().join('|');  // labels
-				config.chxr = '0,0,'+max+'|1,0,0';
-				config.chds = '0,' + max;  // scale
+				config.chxl = '0:|'+xAxisLabels.join('|')+'|1:|'+yAxisLabels.join('|');  // labels
 
-				if (mySettings.showLegend) {
-					config.chdl = data.getRowHeaders().join('|'); // legend
-				}
+				config.chxr = '0,0,'+xMax+'|1,0,0';		// scale axis
+				config.chds = '0,' + xMax;				// scale chart
 
 				params = serialize(config);
 				table.after('<img class="'+mySettings.imageClass+'" src="http://chart.apis.google.com/chart?'+params+'" width="'+mySettings.chartWidth+'" height="'+height+'" alt="'+caption+'" />');    
@@ -224,12 +220,11 @@
 				var caption = data.getCaption();
 				var max = data.getMax();
 				var config = {
-					chs : '' + mySettings.chartWidth + 'x' + mySettings.chartHeight,  // size
+					chs : '' + mySettings.chartWidth + 'x' + mySettings.chartHeight, // size
 					cht : 'v',
 					chdlp : mySettings.legendPosition,								// legend position
-					chdls : mySettings.textColor + ',' + mySettings.textSize,  // legend style
-					chds : '0,'+max,
-					chma : '' + mySettings.marginLeft + ',' + mySettings.marginRight + ',' + mySettings.marginTop + ',' + mySettings.marginBottom + '|' + mySettings.legendWidth + ',' + mySettings.legendHeight												// margins
+					chdls : mySettings.textColor + ',' + mySettings.textSize,		// legend style
+					chma : '' + mySettings.marginLeft + ',' + mySettings.marginRight + ',' + mySettings.marginTop + ',' + mySettings.marginBottom + '|' + mySettings.legendWidth + ',' + mySettings.legendHeight // margins
 				};
 				config.chd = 't:' + data.toString(',', '|');  // data
 				if (mySettings.colors) config.chco = mySettings.colors.first(data.numColumns).join(',');
@@ -278,6 +273,22 @@
 			});
 		}
 	};
+	function getAxisLabels (minValue, maxValue, step) {
+		var arr = [];
+		$.extend(arr, ArrayExtensions);
+		return arr.range(minValue, maxValue, step);
+	}
+	// TODO: write this function
+	function getAxisStep (minValue, maxValue) {
+		var range = maxValue - minValue;
+		if (range <= 60) {
+			return 5;
+		} else if (range <= 120) {
+			return 10;
+		} else {
+			return 25;
+		}
+	}
 	function serialize (obj) {
 		var str = [];
 		for (var p in obj)

@@ -19,9 +19,11 @@
 	<script type="text/javascript" src="javascripts/chartify.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function () {
-	  $('.pie-chart').chartify('pie', {chartType: 'p3'});
+	  $('.pie-chart').chartify('pie', {chartType: 'p3', unit: '%', isDistribution: true});
 	  $('.bar-chart').chartify('bar', {legendPosition: 'b'});
-	  $('.bar-chart-1').chartify('bar', {marginLeft: 128, legendPosition: 'r', showLabels: false});
+	  $('.bar-chart-1').chartify('bar', {marginLeft: 128, legendPosition: 'r', showLegend: false, unit: '%'});
+	  $('.bar-chart-3').chartify('bar', {isDistribution: true, unit: '%'});
+	  $('.bar-chart-2').chartify('bar', {legendPosition: 'b', isDistribution: true, isStacked: true, showLabels: false, unit: '%'});
 	  $('.venn-diagram').chartify('venn', {colors: ["ff000080", "00ff0080", "0000ff80"]});
 	  $('.gender-chart').chartify('gender');
 	});
@@ -79,7 +81,7 @@
     </table>
 
     <h2>Bar Chart (single group, values in percent)</h2>
-    <table class="bar-chart-1 percent">
+    <table class="bar-chart-1">
       <caption>When do you create charts?</caption>
       <thead>
         <tr>
@@ -102,7 +104,7 @@
     </table>
 
     <h2>Bar Chart (multiple groups, distribution)</h2>
-    <table class="bar-chart distribution">
+    <table class="bar-chart-3">
       <caption>När i veckan använder du iPad?</caption>
       <thead>
         <tr>
@@ -168,7 +170,7 @@
     </table>
 
     <h2>Stacked Bar Chart (distribution, no context labels)</h2>
-    <table class="bar-chart distribution stacked suppress-context-labels">
+    <table class="bar-chart-2">
       <caption>How much do you use...?</caption>
       <thead>
         <tr>
