@@ -263,7 +263,7 @@
 				if (menRemainder > 0) {
 					womenWidth -= colWidth;
 					html.push('<div class="men" style="position:absolute; background-color: '+menColor+';top: 0; left: '+colWidth*menCols+'px;width: '+colWidth+'px;height: '+ menRemainder * rowHeight + 'px"></div>');
-					html.push('<div class="women" style="position:absolute; background-color: '+womenColor+'; top:'+menRest * rowHeight+'px; left: '+colWidth*menCols+'px;width :'+colWidth+'px;height :'+rowHeight*womenRemainder+'px"></div>');
+					html.push('<div class="women" style="position:absolute; background-color: '+womenColor+'; top:'+menRemainder * rowHeight+'px; left: '+colWidth*menCols+'px;width :'+colWidth+'px;height :'+rowHeight*womenRemainder+'px"></div>');
 				}
 				html.push('<div class="women" style="position:absolute; background-color: '+womenColor+'; right:0; top: 0;width :'+womenWidth+'px;height :'+rowHeight*mySettings.numRows+'px"></div>');
 				html.push('</div>');
